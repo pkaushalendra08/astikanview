@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Dashboard | Astikan Healthcare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito:wght@700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #1A56DB;
+      --blue2: #3B82F6;
+      --bluebg: #EEF4FF;
+      --bg: #F8FAFC;
+      --white: #FFFFFF;
+      --sidebar: #0F172A;
+      --sidebar-h: #1E293B;
+      --t1: #111827;
+      --t2: #374151;
+      --t3: #64748B;
+      --border: #E2E8F0;
+      --r2: 12px;
+      --r3: 16px;
+      --r4: 24px;
+      --sh0: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --sh2: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    @media(max-width:768px) {
+      :root {
+        --px: 20px
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--t1);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      position: relative
+    }
+
+    /* ══ SIDEBAR ══ */
+    .side {
+      width: 280px;
+      background: var(--sidebar);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000
+    }
+
+    .side.closed {
+      width: 0;
+      opacity: 0;
+      pointer-events: none
+    }
+
+    .side-hdr {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      min-width: 280px
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .brand {
+      font-family: 'Nunito';
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--blue2)
+    }
+
+    .side-cls {
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: 0.2s
+    }
+
+    .side-cls:hover {
+      opacity: 1;
+      color: var(--blue2)
+    }
+
+    .new-chat {
+      margin: 16px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s
+    }
+
+    .new-chat:hover {
+      background: rgba(255, 255, 255, 0.1)
+    }
+
+    .chat-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0
+    }
+
+    .chat-group {
+      padding: 16px 20px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--t3);
+      text-transform: uppercase;
+      letter-spacing: 1px
+    }
+
+    .chat-item {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      position: relative;
+      overflow: hidden
+    }
+
+    .chat-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff
+    }
+
+    .chat-item.active {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--blue2);
+      border-right: 3px solid var(--blue2)
+    }
+
+    .chat-ico {
+      font-size: 16px;
+      opacity: 0.6
+    }
+
+    .chat-txt {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .side-ft {
+      padding: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1)
+    }
+
+    .usr-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 12px
+    }
+
+    .usr-av {
+      width: 32px;
+      height: 32px;
+      background: var(--blue2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 12px
+    }
+
+    .set-ico {
+      font-size: 18px;
+      opacity: 0.4;
+      cursor: pointer;
+      transition: 0.2s
+    }
+
+    .set-ico:hover {
+      opacity: 1;
+      color: var(--blue2)
+    }
+
+    /* ══ MAIN CONTENT ══ */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--bg)
+    }
+
+    .main-hdr {
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 10
+    }
+
+    .hdr-l {
+      display: flex;
+      align-items: center;
+      gap: 16px
+    }
+
+    .menu-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bluebg);
+      color: var(--blue);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: 0.2s
+    }
+
+    .menu-btn:hover {
+      background: var(--blue);
+      color: #fff
+    }
+
+    .side.closed~.main .menu-btn {
+      display: flex
+    }
+
+    /* Show menu button when side is closed */
+    .tt-box h2 {
+      font-size: 18px;
+      font-weight: 800;
+      font-family: 'Nunito'
+    }
+
+    .tt-box p {
+      font-size: 12px;
+      color: var(--t3)
+    }
+
+    .hdr-acts {
+      display: flex;
+      gap: 12px
+    }
+
+    .dash-brand {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .dash-brand .brand-ico { font-size: 20px; color: var(--blue) }
+    .dash-brand .brand-nm { font-size: 18px; font-weight: 900; color: var(--blue); font-family: 'Nunito' }
+
+    @media(max-width:768px) {
+      .tt-box, .hdr-acts { display: none !important }
+      .dash-brand { display: flex !important }
+      .main-hdr { padding: 0 16px }
+    }
+
+    .hd-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      cursor: pointer
+    }
+
+    .hd-btn:hover {
+      background: var(--bg)
+    }
+
+    .scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px 60px
+    }
+
+    /* ══ DASHBOARD COMPONENTS ══ */
+    /* ══ BRIEFING TOP ══ */
+    .briefing {
+      background: linear-gradient(135deg, var(--white), #f8faff);
+      border-radius: var(--r4);
+      border: 1px solid var(--border);
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: var(--sh2);
+      position: relative;
+      overflow: hidden;
+    }
+    .briefing::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+    }
+
+    .diag-sum {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .diag-ico {
+      width: 72px; height: 72px; background: var(--bluebg);
+      border-radius: 20px; display: flex; align-items: center;
+      justify-content: center; font-size: 32px; flex-shrink: 0;
+    }
+
+    .diag-info h3 { font-size: 26px; font-weight: 950; margin-bottom: 8px; font-family: 'Nunito'; }
+    .diag-info p { color: var(--t2); line-height: 1.6; font-size: 15px; max-width: 800px; }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.6);
+      padding: 16px 20px;
+      border-radius: var(--r2);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .s-lbl { font-size: 11px; font-weight: 800; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px; }
+    .s-val { font-size: 18px; font-weight: 950; color: var(--t1); }
+    .s-val.gr { color: #10B981; }
+
+    /* ══ CONVERSATION FLOW (CHATGPT STYLE) ══ */
+    .chat-container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding-bottom: 120px;
+    }
+
+    .message {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 24px;
+      animation: msg-in 0.4s ease both;
+      width: 100%;
+    }
+    @keyframes msg-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .message.ai { align-items: flex-start; }
+    .message.user { align-items: flex-end; }
+
+    .msg-wrap {
+      display: flex;
+      gap: 12px;
+      max-width: 80%;
+    }
+    .message.user .msg-wrap { flex-direction: row-reverse; }
+
+    .msg-av {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+      margin-top: 4px;
+      box-shadow: var(--sh1);
+    }
+    .msg-av.ai { background: var(--blue); color: #fff; }
+    .msg-av.user { background: #334155; color: #fff; }
+
+    .msg-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .message.user .msg-content { align-items: flex-end; }
+
+    .msg-lbl { font-size: 11px; font-weight: 800; color: var(--t3); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .msg-bubble {
+      font-size: 15px;
+      line-height: 1.5;
+      padding: 14px 18px;
+      border-radius: 18px;
+      position: relative;
+    }
+    .message.ai .msg-bubble {
+      background: var(--bluebg);
+      color: var(--t1);
+      border-bottom-left-radius: 4px;
+    }
+    .message.user .msg-bubble {
+      background: var(--blue);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+      text-align: right;
+    }
+    .msg-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; justify-content: flex-end; }
+    .opt-pill {
+      background: var(--white); border: 1px solid var(--border);
+      padding: 10px 18px; border-radius: 14px; font-size: 14px;
+      font-weight: 700; color: var(--blue); box-shadow: var(--sh0);
+    }
+
+    .action-bubble {
+      background: var(--greenbg);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 20px;
+      border-radius: var(--r3);
+      color: #065F46;
+      font-weight: 600;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .action-bubble i { font-size: 24px; font-style: normal; }
+
+    /* ══ CHAT INPUT FOOTER ══ */
+    .chat-footer {
+      position: fixed;
+      bottom: 0;
+      left: 280px;
+      right: 0;
+      padding: 20px 40px 40px;
+      background: linear-gradient(0deg, var(--bg) 60%, transparent);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+    }
+    .side.closed ~ .main .chat-footer { left: 0; }
+
+    .resume-bar {
+      width: 100%;
+      max-width: 800px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--sh3);
+    }
+    .res-cta {
+      flex: 1;
+      height: 52px;
+      border-radius: 30px;
+      border: none;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: 0.3s;
+    }
+    .res-cta.p { background: var(--blue); color: #fff; }
+    .res-cta.s { background: var(--bluebg); color: var(--blue); }
+    .res-cta:hover { transform: translateY(-2px); opacity: 0.9; }
+
+    @media(max-width:768px) {
+      .chat-footer { left: 0; padding: 16px; }
+      .resume-bar { border-radius: 20px; flex-direction: column; padding: 12px; }
+      .res-cta { width: 100%; height: 48px; }
+      .briefing { padding: 20px; margin-bottom: 24px; }
+      .diag-sum { flex-direction: column; gap: 16px; }
+      .dash-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Actions */
+    .dash-acts {
+      position: sticky;
+      bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 32px 0 20px;
+      margin-top: auto;
+      z-index: 5;
+    }
+
+    .cta-res {
+      background: var(--blue);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 15px;
+      box-shadow: 0 12px 30px rgba(26, 86, 219, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    @media(max-width:480px){
+      .cta-res { width: 100%; padding: 18px 24px; font-size: 16px; }
+      .dash-acts { position: static; padding: 40px 0; }
+    }
+
+    .cta-res:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(26, 86, 219, 0.4)
+    }
+
+    /* ══ MODALS ══ */
+    .mod-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .mod-overlay.open {
+      display: flex
+    }
+
+    .mod-card {
+      background: #fff;
+      width: 100%;
+      max-width: 460px;
+      border-radius: var(--r4);
+      padding: 32px;
+      box-shadow: var(--sh3);
+      position: relative;
+      animation: mod-in 0.3s ease both
+    }
+
+    @keyframes mod-in {
+      from {
+        opacity: 0;
+        transform: scale(0.95)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    .mod-tt {
+      font-size: 22px;
+      font-weight: 900;
+      font-family: 'Nunito';
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px
+    }
+
+    .set-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--bg)
+    }
+
+    .set-txt h4 {
+      font-size: 15px;
+      font-weight: 700
+    }
+
+    .set-txt p {
+      font-size: 12px;
+      color: var(--t3)
+    }
+
+    .tg-btn {
+      width: 44px;
+      height: 24px;
+      background: var(--border);
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: 0.3s
+    }
+
+    .tg-btn::after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.3s;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+    }
+
+    .tg-btn.on {
+      background: var(--blue)
+    }
+
+    .tg-btn.on::after {
+      left: 22px
+    }
+
+    @media(max-width:1024px) {
+      .scroll-area {
+        padding: 40px var(--px)
+      }
+
+      .dash-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:768px) {
+      .side {
+        position: fixed;
+        height: 100dvh;
+        top: 0;
+        left: 0;
+        width: 280px;
+        margin-left: -280px
+      }
+
+      .side.closed {
+        margin-left: -280px;
+        width: 280px;
+        opacity: 1;
+        pointer-events: auto
+      }
+
+      .side.open {
+        margin-left: 0;
+        width: 280px;
+        opacity: 1;
+        pointer-events: auto
+      }
+
+      .menu-btn {
+        display: flex !important
+      }
+
+      .dash-grid {
+        grid-template-columns: 1fr
+      }
+
+      .diag-sum {
+        flex-direction: column;
+        gap: 16px
+      }
+
+      .main-hdr {
+        padding: 0 16px
+      }
+
+      .hdr-acts {
+        display: none
+      }
+
+      .scroll-area {
+        padding: 24px var(--px)
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="side" id="sidebar">
+    <div class="side-hdr">
+      <div class="brand-box" onclick="location.href='index.html'" style="cursor:pointer">
+        <div class="usr-av" style="background:var(--blue); width:28px; height:28px">✦</div>
+        <span class="brand">Astikan</span>
+      </div>
+      <span class="side-cls" onclick="toggleSidebar()">✕</span>
+    </div>
+
+    <div class="new-chat" onclick="location.href='index.html'">
+      <span>➕</span> New Health Checkup
+    </div>
+
+    <div class="chat-list">
+      <div class="chat-group">Recent History</div>
+      <div class="chat-item active" onclick="switchChat('gastritis', this)">
+        <span class="chat-ico">💬</span>
+        <span class="chat-txt">Stomach Burn & Acidity</span>
+      </div>
+      <div class="chat-item" onclick="switchChat('fever', this)">
+        <span class="chat-ico">💬</span>
+        <span class="chat-txt">Late Night Fever Check</span>
+      </div>
+      <div class="chat-item" onclick="switchChat('backpain', this)">
+        <span class="chat-ico">💬</span>
+        <span class="chat-txt">Lower Back Muscle Pain</span>
+      </div>
+
+      <div class="chat-group">Last 7 Days</div>
+      <div class="chat-item">
+        <span class="chat-ico">💬</span>
+        <span class="chat-txt">Chest Tightness Inquiry</span>
+      </div>
+      <div class="chat-item">
+        <span class="chat-ico">💬</span>
+        <span class="chat-txt">Migraine Follow-up</span>
+      </div>
+    </div>
+
+    <div class="side-ft">
+      <div class="usr-box">
+        <div class="usr-av">RS</div>
+        <div style="flex:1">
+          <p style="font-size:13px; font-weight:700">Rohit Sharma</p>
+          <p style="font-size:10px; opacity:0.6">Astikan Pro Member</p>
+        </div>
+        <span class="set-ico" onclick="openModal('settings')">⚙️</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN AREA ══ -->
+  <main class="main">
+    <header class="main-hdr">
+      <div class="hdr-l">
+        <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+        <a href="index.html" class="dash-brand">
+          <span class="brand-ico">✦</span>
+          <span class="brand-nm">Astikan</span>
+        </a>
+        <div class="tt-box" id="dash-title-box">
+          <h2 id="session-title">Stomach Burn & Acidity</h2>
+          <p id="session-date">20th April • 11:32 AM</p>
+        </div>
+      </div>
+      <div class="hdr-acts">
+        <button class="hd-btn"><span>📥</span> Export Report</button>
+        <button class="hd-btn" style="border-color:var(--blue); color:var(--blue)"><span>⭐</span> Share</button>
+      </div>
+    </header>
+
+    <div class="scroll-area" id="main-scroll" style="padding-bottom: 40px;">
+      <div class="chat-container">
+        <!-- Briefing Top -->
+        <div class="briefing">
+          <div class="diag-sum">
+            <div class="diag-ico" id="diag-ico">🔥</div>
+            <div class="diag-info">
+              <h3 id="diag-title">Suspected Gastritis (Mild)</h3>
+              <p id="diag-desc">Your symptoms of stomach pain, nausea, and burning after meals indicated a 95% likelihood
+                of acute gastritis.</p>
+            </div>
+          </div>
+
+          <div class="dash-grid">
+            <div class="stat-card">
+              <span class="s-lbl">Specialist</span>
+              <span class="s-val" id="stat-spec">General Physician</span>
+            </div>
+            <div class="stat-card">
+              <span class="s-lbl">Budget Set</span>
+              <span class="s-val" id="stat-budget">₹700</span>
+            </div>
+            <div class="stat-card">
+              <span class="s-lbl">Chosen Care</span>
+              <span class="s-val gr" id="stat-opt">CareWell Clinic</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conversation Timeline -->
+        <div id="dash-timeline">
+          <!-- Chat messages rendered by switchChat -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky Footer Resume Area -->
+    <div class="chat-footer">
+      <div class="resume-bar">
+        <button class="res-cta p" onclick="location.href='index.html?screen=2'">
+          <span>💬</span> Continue Consultation
+        </button>
+        <button class="res-cta s" onclick="location.href='index.html?screen=5'">
+          <span>📍</span> Labs & Savings
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ SETTINGS MODAL ══ -->
+  <div class="mod-overlay" id="set-modal">
+    <div class="mod-card">
+      <span class="auth-close" onclick="closeModal('settings')" style="position:absolute; top:32px; right:32px">✕</span>
+      <h2 class="mod-tt">Dashboard Settings</h2>
+
+      <div class="set-row">
+        <div class="set-txt">
+          <h4>Dark Appearance</h4>
+          <p>Switch to high-contrast dark theme</p>
+        </div>
+        <div class="tg-btn" onclick="this.classList.toggle('on')"></div>
+      </div>
+
+      <div class="set-row">
+        <div class="set-txt">
+          <h4>Health Sync</h4>
+          <p>Sync data with Apple Health / Google Fit</p>
+        </div>
+        <div class="tg-btn on" onclick="this.classList.toggle('on')"></div>
+      </div>
+
+      <div class="set-row">
+        <div class="set-txt">
+          <h4>Privacy Mode</h4>
+          <p>Mask sensitive diagnostic details in history</p>
+        </div>
+        <div class="tg-btn" onclick="this.classList.toggle('on')"></div>
+      </div>
+
+      <div class="set-row" style="border:none; margin-top:16px">
+        <button class="a-btn" onclick="closeModal('settings')" style="height:48px; font-size:14px">Save
+          Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sessions = {
+      gastritis: {
+        title: 'Stomach Burn & Acidity', date: '20th April • 11:32 AM',
+        ico: '🔥', diag: 'Suspected Gastritis (Mild)',
+        desc: 'Your symptoms of stomach pain, nausea, and burning after meals indicated a 95% likelihood of acute gastritis.',
+        spec: 'General Physician', budget: '₹700', opt: 'CareWell Clinic',
+        timeline: [
+          { q: 'Tell me, what are you feeling right now?', all: ['Stomach Pain', 'Nausea', 'Acidity', 'Headache'], chosen: ['Stomach Pain', 'Nausea', 'Acidity'] },
+          { q: 'How severe is your discomfort right now?', all: ['Mild', 'Moderate', 'Severe', 'Extreme'], chosen: ['Moderate – Distracting'] },
+          { done: 'You chose <b>CareWell Clinic</b> for ₹300. 20% cashback applied.' }
+        ]
+      },
+      fever: {
+        title: 'Late Night Fever Check', date: '18th April • 02:15 AM',
+        ico: '🤒', diag: 'Common Viral Fever',
+        desc: 'A recorded temperature of 101.4°F with body ache and chills suggested a viral origin. Vital signs remained stable.',
+        spec: 'General Physician', budget: '₹1200', opt: 'Apollo 24/7 Home Visit',
+        timeline: [
+          { q: 'Please record your body temperature if possible.', all: ['100 °F', '101°F', '102°F', 'Normal'], chosen: ['101.4 °F', 'Chills'] },
+          { q: 'Any other symptoms like cough or throat pain?', all: ['Cough', 'Throat Pain', 'Runny Nose', 'No, none'], chosen: ['❌ No other symptoms'] },
+          { done: 'Booked a <b>Home Visit Doctor</b>. Meds delivered via 1mg.' }
+        ]
+      },
+      backpain: {
+        title: 'Lower Back Muscle Pain', date: '15th April • 06:45 PM',
+        ico: '🦴', diag: 'Lumbar Strain',
+        desc: 'Pain localized to lower back following lifting activity. No radical symptoms or numbness observed in legs.',
+        spec: 'Physiotherapist', budget: '₹500', opt: 'HealEase Physio Center',
+        timeline: [
+          { q: 'When did the pain start and what were you doing?', all: ['Lifting weights', 'Sitting', 'Sleeping', 'Walking'], chosen: ['🏋️ Lifting weights', '⏱️ 2 hours ago'] },
+          { q: 'Can you bend forward comfortably?', all: ['Yes', 'No', 'With pain'], chosen: ['😫 No, very stiff'] },
+          { done: 'Referred to <b>HealEase Physio</b>. Scheduled session for tomorrow.' }
+        ]
+      }
+    };
+
+    function switchChat(id, el) {
+      const data = sessions[id];
+      if (!data) return;
+
+      // UI Updates
+      document.getElementById('session-title').textContent = data.title;
+      document.getElementById('session-date').textContent = data.date;
+      document.getElementById('diag-ico').textContent = data.ico;
+      document.getElementById('diag-title').textContent = data.diag;
+      document.getElementById('diag-desc').textContent = data.desc;
+      document.getElementById('stat-spec').textContent = data.spec;
+      document.getElementById('stat-budget').textContent = data.budget;
+      document.getElementById('stat-opt').textContent = data.opt;
+
+      // Timeline render
+      const tl = document.getElementById('dash-timeline');
+      tl.innerHTML = '';
+      data.timeline.forEach(step => {
+        let html = '';
+        if (step.q) {
+          // AI Prompt with all options
+          let allStr = step.all.map(a => `<span style="font-size:11px; color:var(--t3); background:var(--bg); padding:4px 8px; border-radius:10px; border:1px dashed var(--border)">${a}</span>`).join('');
+          html += `
+            <div class="message ai">
+              <div class="msg-wrap">
+                <div class="msg-av ai">✦</div>
+                <div class="msg-content">
+                  <div class="msg-lbl">Astikan AI</div>
+                  <div class="msg-bubble">${step.q}</div>
+                  <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:8px">${allStr}</div>
+                </div>
+              </div>
+            </div>`;
+
+          // User selection on right
+          let chosenStr = step.chosen.map(c => `<span class="opt-pill">${c}</span>`).join('');
+          html += `
+            <div class="message user">
+              <div class="msg-wrap">
+                <div class="msg-av user">👤</div>
+                <div class="msg-content">
+                  <div class="msg-lbl">You Selected</div>
+                  <div class="msg-pills">${chosenStr}</div>
+                </div>
+              </div>
+            </div>`;
+        } else if (step.done) {
+          html = `
+            <div class="message" style="align-items:center; margin: 20px 0;">
+              <div class="action-bubble" style="max-width: 80%;">
+                <i>✅</i>
+                <span>${step.done}</span>
+              </div>
+            </div>`;
+        }
+        tl.innerHTML += html;
+      });
+
+      // Sidebar highlight
+      document.querySelectorAll('.chat-item').forEach(i => i.classList.remove('active'));
+      el.classList.add('active');
+
+      // Auto scroll top
+      document.getElementById('main-scroll').scrollTo(0, 0);
+    }
+
+    // Initial load
+    switchChat('gastritis', document.querySelector('.chat-item.active'));
+
+    function toggleSidebar() {
+      const side = document.getElementById('sidebar');
+      if (window.innerWidth <= 768) {
+        side.classList.toggle('open');
+        side.classList.remove('closed');
+      } else {
+        side.classList.toggle('closed');
+      }
+    }
+
+    function openModal(id) {
+      if (id === 'settings') document.getElementById('set-modal').classList.add('open');
+    }
+    function closeModal(id) {
+      if (id === 'settings') document.getElementById('set-modal').classList.remove('open');
+    }
+  </script>
+
+</body>
+
+</html>
