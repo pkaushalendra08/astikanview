@@ -78,12 +78,12 @@ a{text-decoration:none}
 .nav-lnk:hover{background:var(--bluebg);color:var(--blue)}
 .nav-lnk.active{background:var(--bluebg);color:var(--blue)}
 
-.hdr-r{display:flex;align-items:center;gap:16px}
-.ham{
-  display:none;width:40px;height:40px;border-radius:10px;
-  background:var(--bluebg);color:var(--blue);font-size:20px;
-  align-items:center;justify-content:center;cursor:pointer;
-  border:none;
+.hdr-r{display:flex;align-items:center;gap:12px}
+.hdr-emg-mob { display:none; width:40px; height:40px; border-radius:10px; background:var(--redbg); color:var(--red); font-size:20px; align-items:center; justify-content:center; cursor:pointer }
+.ham{display:none;width:40px;height:40px;border-radius:10px;background:var(--bluebg);color:var(--blue);font-size:20px;align-items:center;justify-content:center;cursor:pointer;border:none}
+@media(max-width:768px){
+  .hdr-mid, .hdr-auth-btns, .emg { display:none !important }
+  .ham, .hdr-emg-mob { display:flex !important }
 }
 
 .emg{
@@ -137,6 +137,7 @@ a{text-decoration:none}
   padding:24px;display:flex;flex-direction:column;gap:24px;
   transition:right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.drawer-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;width:100%}
 .drawer.open{right:0}
 .drawer-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .drawer-lnk{
@@ -153,7 +154,7 @@ a{text-decoration:none}
 
 @media(max-width:768px){
   .hdr-mid, .hdr-auth-btns, .emg { display:none !important }
-  .ham { display:flex !important }
+  .ham, .hdr-emg-mob { display:flex !important }
 }
 
 /* ── Hero ── */
@@ -210,6 +211,7 @@ footer{background:var(--white); padding:80px var(--px); border-top:1px solid var
       <button class="btn-auth join" onclick="openAuth('signup')">Sign Up</button>
     </div>
     <button class="emg" onclick="location.href='emergency.html'"><span>🚨</span>Emergency Help</button>
+    <div class="hdr-emg-mob" onclick="location.href='emergency.html'">🚨</div>
     <button class="ham" onclick="toggleMenu(true)">☰</button>
   </div>
 </header>

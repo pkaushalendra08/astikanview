@@ -39,20 +39,22 @@ input, textarea, button{font-family:inherit}
 .nav-lnk{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--t2);padding:8px 12px;border-radius:12px;transition:all 0.2s}
 .nav-lnk i{font-style:normal;font-size:18px}
 .nav-lnk:hover, .nav-lnk.active{background:var(--bluebg);color:var(--blue)}
-.hdr-r{display:flex;align-items:center;gap:16px}
+.hdr-r{display:flex;align-items:center;gap:12px}
+.hdr-emg-mob{display:none;width:40px;height:40px;border-radius:10px;background:var(--redbg);color:var(--red);font-size:20px;align-items:center;justify-content:center;cursor:pointer}
 .ham{display:none;width:40px;height:40px;border-radius:10px;background:var(--bluebg);color:var(--blue);font-size:20px;align-items:center;justify-content:center;cursor:pointer}
 .emg{background:linear-gradient(135deg,#DC2626,#EF4444);color:#fff;border-radius:24px;padding:10px 18px;font-size:14px;font-weight:800;box-shadow:0 4px 15px rgba(220, 38, 38, 0.3);display:flex;align-items:center;gap:8px;border:none}
 
 /* Mobile Drawer */
 .drawer{position:fixed;top:0;right:-100%;width:280px;height:100dvh;background:var(--white);z-index:99999;box-shadow:-10px 0 40px rgba(0,0,0,0.1);padding:24px;display:flex;flex-direction:column;gap:20px;transition:right 0.4s cubic-bezier(0.4, 0, 0.2, 1)}
+.drawer-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;width:100%}
 .drawer.open{right:0}
 .drawer-lnk{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700;color:var(--t1);padding:14px;border-radius:var(--r2)}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);z-index:99998;opacity:0;pointer-events:none;transition:opacity 0.3s}
 .overlay.open{opacity:1;pointer-events:auto}
 
 @media(max-width:768px){
-  .hdr-mid, .hdr-auth-btns, .emg { display:none !important }
-  .ham { display:flex !important }
+  .hdr-mid, .hdr-auth-btns { display:none !important }
+  .ham, .hdr-emg-mob { display:flex !important }
 }
 
 /* Hero Section */
@@ -261,7 +263,7 @@ input, textarea, button{font-family:inherit}
       <button class="btn-auth login" onclick="openAuth('login')">Sign In</button>
       <button class="btn-auth join" onclick="openAuth('signup')">Sign Up</button>
     </div>
-    <button class="emg" onclick="location.href='emergency.html'"><span>🚨</span>Emergency Help</button>
+    <div class="hdr-emg-mob" onclick="location.href='emergency.html'">🚨</div>
     <button class="ham" onclick="toggleMenu(true)">☰</button>
   </div>
 </header>

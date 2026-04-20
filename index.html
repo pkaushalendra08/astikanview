@@ -555,7 +555,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: var(--cg)
+      margin-bottom: var(--cg);
+      width: 100%;
     }
 
     .drawer-lnk {
@@ -3021,7 +3022,7 @@
       .hdr-mid, .hdr-auth-btns, .emg {
         display: none !important
       }
-      .ham {
+      .ham, .hdr-emg-mob {
         display: flex !important
       }
     }
@@ -3518,6 +3519,7 @@
         <button class="btn-auth join" onclick="openAuth('signup')">Sign Up</button>
       </div>
       <button class="emg" onclick="location.href='emergency.html'"><span>🚨</span>Emergency Help</button>
+      <div class="hdr-emg-mob" onclick="location.href='emergency.html'" style="display:none; width:40px; height:40px; border-radius:10px; background:var(--redbg); color:var(--red); font-size:20px; align-items:center; justify-content:center; cursor:pointer; margin-right:8px">🚨</div>
       <button class="ham" onclick="toggleMenu(true)">☰</button>
     </div>
   </header>
