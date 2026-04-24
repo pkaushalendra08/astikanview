@@ -1,0 +1,130 @@
+<!-- ══════════ SCREEN 5 — COST ANALYZER ══════════ -->
+<section class="screen" id="s5">
+  <div class="pg">
+
+    <div class="tag-pill">COST ANALYZER &amp; SAVINGS</div>
+    <h2 class="ca-tt">Compare &amp; Save <span class="gr">Near You</span></h2>
+    <div class="ca-loc" style="margin-bottom:24px"><span>📍</span><strong>Connaught Place, Delhi</strong><button
+        class="ch" onclick="alert('Change location')">Change</button></div>
+
+    <div class="ca-grid" style="align-items:flex-start">
+      <div>
+        <!-- 🗺️ Mapbox Visualization (Aligned with CTA on right) -->
+        <div class="ca-map">
+          <div class="map-bg"></div>
+          <div class="map-road" style="width:100%; top:45%; transform:rotate(-5deg)"></div>
+          <div class="map-road" style="height:100%; left:30%; width:4px"></div>
+
+          <!-- User Pin -->
+          <div class="pin usr" style="top:50%; left:30%">
+            <div class="pin-lbl">You Are Here</div>
+          </div>
+
+          <!-- Clinic Pins -->
+          <div class="pin" style="top:32%; left:55%; animation-delay:0.5s">
+            <div class="pin-lbl">CareWell (0.8km)</div>
+          </div>
+          <div class="pin" style="top:65%; left:68%; background:var(--t2); animation-delay:1.2s">
+            <div class="pin-lbl">CityCare (1.2km)</div>
+          </div>
+          <div class="pin" style="top:22%; left:75%; background:var(--t3); animation-delay:0.8s">
+            <div class="pin-lbl">HealthPlus (1.5km)</div>
+          </div>
+        </div>
+        <div class="tabs">
+          <button class="tab active" id="tab-c" onclick="switchTab('c')">Consultation</button>
+          <button class="tab" id="tab-t" onclick="switchTab('t')">Tests (If Needed)</button>
+        </div>
+        <!-- Budget Slider -->
+        <div class="bgt-wrap">
+          <div class="bgt-top" style="margin-bottom:8px">
+            <p class="bgt-title" style="margin:0">🎯 Set Your Budget</p>
+            <div class="bgt-vbox">
+              <span class="bgt-val" id="bgt-val" style="font-size:18px">₹700</span>
+            </div>
+          </div>
+          <input type="range" class="bgt-range" id="bgt-slider" min="100" max="1500" value="700" step="50"
+            oninput="onBudget(this.value)" />
+          <div class="bgt-tags" style="margin-top:10px; gap:6px; justify-content:flex-start">
+            <button class="bgt-tag" style="padding:4px 10px; font-size:11px" onclick="setBudget(300)">₹300</button>
+            <button class="bgt-tag" style="padding:4px 10px; font-size:11px" onclick="setBudget(500)">₹500</button>
+            <button class="bgt-tag on" style="padding:4px 10px; font-size:11px" onclick="setBudget(700)">₹700</button>
+            <button class="bgt-tag" style="padding:4px 10px; font-size:11px" onclick="setBudget(1000)">₹1,000</button>
+          </div>
+        </div>
+        <div class="tip-b"><span>💡</span><span>Tip: You can save up to <strong>₹450</strong> by choosing smarter with
+            Astikan.</span></div>
+        <div class="cl-list" id="cl-list"></div>
+      </div>
+      <div class="ca-rp">
+        <button class="btn btn-p btn-wide" onclick="goTo(6)"
+          style="height:62px; font-size:18px; font-weight:800; margin-top:0; margin-bottom:16px; box-shadow:0 10px 30px rgba(26,86,219,0.3)">See
+          My Plans →</button>
+        <div class="ps-banner"
+          style="flex-direction:column; align-items:flex-start; gap:8px; padding:12px; margin-bottom:12px">
+          <div>
+            <p class="ps-diag-name" style="font-size:16px">Acidity / Gastritis</p>
+            <p class="ps-diag-sub">95% Confidence Match</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+            <span class="ps-sev-val" style="font-size:10px">Mild Condition</span>
+            <span
+              style="font-size:10px; font-weight:800; color:var(--blue); background:var(--bluebg); padding:2px 8px; border-radius:20px">Consult:
+              General Physician</span>
+          </div>
+        </div>
+        <div class="save-box">
+          <p class="save-amt" id="total-save">₹250 – ₹300</p>
+          <p class="piggy-row">Potential savings with Astikan Smart-Care</p>
+          <div class="bgt-mini">
+            <span id="within-cnt">3 clinics within budget</span> • Max savings <strong id="max-sv">₹300</strong>
+          </div>
+          <p style="font-size:10px; opacity:0.7; margin-top:2px">Smart patients save more!</p>
+        </div>
+
+        <div class="cmp-card" style="margin-top:16px">
+          <p style="font-size:10px; text-transform:uppercase; font-weight:900; color:var(--t3); margin-bottom:4px">
+            Value Comparison</p>
+          <div class="cmp-best">
+            <span>Cheapest: <strong>₹300</strong></span>
+            <span>|</span>
+            <span>Best Value: <strong>₹450</strong></span>
+          </div>
+        </div>
+        <div class="cmp-wrap" style="display:none">
+          <span class="lbl">Price Comparison</span>
+          <table class="cmp-tbl">
+            <thead>
+              <tr>
+                <th>Clinic</th>
+                <th>Price</th>
+                <th>Astikan Saves</th>
+              </tr>
+            </thead>
+            <tbody id="cmp-body"></tbody>
+          </table>
+        </div>
+        <!-- AI Recommendation (Lower) -->
+        <div class="ca-ai" style="margin-top:16px; border:1.5px solid var(--bluebg); background:#fff">
+          <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" width="36" style="flex-shrink:0">
+            <ellipse cx="50" cy="72" rx="33" ry="28" fill="#5B8DEF" />
+            <ellipse cx="50" cy="45" rx="26" ry="25" fill="#7BA7F7" />
+            <g class="av-eyes" style="transform-origin: 50px 41px">
+              <ellipse cx="42" cy="41" rx="4" ry="4.5" fill="white" />
+              <ellipse cx="58" cy="41" rx="4" ry="4.5" fill="white" />
+              <circle cx="43" cy="42" r="2" fill="#1a3a6b" />
+              <circle cx="59" cy="42" r="2" fill="#1a3a6b" />
+              <circle cx="43.5" cy="41" r="0.7" fill="white" />
+              <circle cx="59.5" cy="41" r="0.7" fill="white" />
+            </g>
+            <path d="M43 53 Q50 59 57 53" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" />
+          </svg>
+          <div>
+            <p style="font-size:13px; margin:0"><strong style="color:var(--blue)">Best option: CareWell
+                Clinic.</strong> Highly rated, nearest, and saves you the most with Astikan!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

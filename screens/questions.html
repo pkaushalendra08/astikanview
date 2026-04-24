@@ -1,0 +1,76 @@
+<!-- ══════════ SCREEN 2 — QUESTIONS ══════════ -->
+<section class="screen" id="s2">
+  <div class="pg">
+    <div class="sq-grid">
+      <div class="sq-side">
+        <div class="sq-av-panel">
+          <div class="av-orb" id="av-orb">
+            <div class="av-orb-ring"></div>
+            <svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg" class="av-orb-svg">
+              <ellipse cx="80" cy="115" rx="52" ry="44" fill="#5B8DEF" />
+              <ellipse cx="80" cy="72" rx="42" ry="40" fill="#7BA7F7" />
+              <g class="av-eyes" style="transform-origin: 80px 65px">
+                <ellipse cx="67" cy="65" rx="7" ry="8" fill="white" />
+                <ellipse cx="93" cy="65" rx="7" ry="8" fill="white" />
+                <circle cx="69" cy="67" r="3.5" fill="#1a3a6b" />
+                <circle cx="95" cy="67" r="3.5" fill="#1a3a6b" />
+                <circle cx="70" cy="65.5" r="1.2" fill="white" />
+                <circle cx="96" cy="65.5" r="1.2" fill="white" />
+              </g>
+              <path d="M70 82 Q80 91 90 82" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" />
+              <ellipse cx="58" cy="78" rx="6" ry="4" fill="#4a7be8" opacity="0.5" />
+              <ellipse cx="102" cy="78" rx="6" ry="4" fill="#4a7be8" opacity="0.5" />
+              <text x="80" y="126" text-anchor="middle" font-size="22" font-weight="bold" fill="white"
+                font-family="Nunito">A</text>
+              <ellipse cx="34" cy="112" rx="11" ry="18" fill="#7BA7F7" transform="rotate(-20 34 112)" />
+              <ellipse cx="126" cy="110" rx="11" ry="18" fill="#7BA7F7" transform="rotate(20 126 110)" />
+            </svg>
+          </div>
+          <div class="av-lbl">Astikan AI</div>
+        </div>
+        <div class="how-card">
+          <p class="how-tt">How it works</p>
+          <ul class="how-li">
+            <li>✅ Answer 4 quick questions</li>
+            <li>✅ AI analyzes your symptoms</li>
+            <li>✅ Get personalised health plan</li>
+            <li>✅ Find best care near you</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sq-main">
+        <div>
+          <div class="sq-hrow">
+            <span class="sq-stag">SMART QUESTIONS</span>
+            <div style="text-align:right">
+              <span class="sq-cnt" id="q-cnt">Question 1 of 4</span>
+              <p
+                style="font-size:11px;color:var(--t3);font-weight:700;text-transform:uppercase;margin-top:2px;letter-spacing:0.5px">
+                ⏱ Takes less than 1 min</p>
+            </div>
+          </div>
+          <div class="prog-tr">
+            <div class="prog-f" id="q-prog" style="width:25%"></div>
+          </div>
+        </div>
+        <div class="sq-card">
+          <div class="q-loader-overlay" id="q-loader-overlay" aria-live="polite" style="display:none;">
+            <div class="q-loader-box">
+              <span class="q-loader-spinner"></span>
+              <p class="q-loader-title">Processing</p>
+              <p class="q-loader-msg" id="q-loader-msg">Analysing symptoms...</p>
+            </div>
+          </div>
+          <h2 class="sq-q" id="q-text">Tell me, what are you feeling right now?</h2>
+          <p class="sq-hint" id="q-hint">Pick whatever feels right. You can choose more than one.</p>
+          <div class="opts" id="q-opts"></div>
+          <div class="sq-acts">
+            <button class="btn-bk" id="btn-back" onclick="sqBack()">← Back</button>
+            <button class="btn-nxt" onclick="sqNext()">Next →</button>
+          </div>
+          <p class="enter-hint">Press <kbd>Enter ↵</kbd> to continue</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

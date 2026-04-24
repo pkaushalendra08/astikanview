@@ -1,0 +1,52 @@
+<!-- ══ GLOBAL HEADER ══ -->
+<header class="hdr">
+  <div class="brand">
+    <span class="brand-ico">✦</span>
+    <span class="brand-nm">Astikan</span>
+  </div>
+
+  <nav class="hdr-mid">
+    <a href="index.html" class="nav-lnk active"><i>🏠</i> Home</a>
+    <a href="blog.html" class="nav-lnk"><i>📝</i> Blogs</a>
+    <a href="dashboard.html" class="nav-lnk"><i>📊</i> Dashboard</a>
+    <a href="contact.html" class="nav-lnk"><i>📞</i> Contact Us</a>
+  </nav>
+
+  <div class="hdr-r">
+    <button class="emg" onclick="location.href='emergency.html'"><span>🚨</span>Emergency Help</button>
+    <div class="hdr-auth-btns">
+      <button class="btn-auth login" onclick="openAuth('login')">Sign In</button>
+    </div>
+    
+    <div class="hdr-emg-mob" onclick="location.href='emergency.html'" style="display:none; width:40px; height:40px; border-radius:10px; background:var(--redbg); color:var(--red); font-size:20px; align-items:center; justify-content:center; cursor:pointer; margin-right:8px">🚨</div>
+    <button class="ham" onclick="toggleMenu(true)">☰</button>
+  </div>
+</header>
+
+<!-- ══ AUTH MODAL ══ -->
+<div class="auth-overlay" id="auth-modal">
+  <div class="auth-card">
+    <span class="auth-close" onclick="closeAuth()">✕</span>
+    <h2 class="auth-tt" id="auth-title">Welcome Back</h2>
+    <p class="auth-sub" id="auth-subtitle">Join 50,000+ members managing health smarter.</p>
+
+    <button class="g-btn" onclick="alert('Google Sign-in initialised…')">
+      <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google">
+      Sign in with Google
+    </button>
+
+    <div class="or-sep">OR EMAIL</div>
+
+    <div class="a-form">
+      <input type="email" class="a-input" placeholder="Email Address">
+      <input type="password" class="a-input" placeholder="Password">
+      <button class="a-btn" id="auth-submit" onclick="alert('Success!')">Sign In</button>
+    </div>
+
+    <div class="a-switch" id="auth-switch">
+      Don't have an account? <b onclick="openAuth('signup')">Sign Up</b>
+    </div>
+
+    <button class="a-skip-btn" onclick="continueWithoutAuth()">Continue without sign in/sign up</button>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<!-- ========== SCREEN 4 - HEALTH SUMMARY ========== -->
+<section class="screen" id="s4">
+  <div class="pg hs-page">
+    <div class="tag-pill">YOUR HEALTH SUMMARY</div>
+    <h2 class="hs-tt">Here's Your <span class="go">Health Snapshot</span></h2>
+
+    <div class="hs-grid">
+      <div class="hs-main">
+        <div class="card hs-card hs-diagnosis">
+          <span class="lbl">Most Likely Cause</span>
+          <div class="diag-row">
+            <div class="hs-diag-copy">
+              <p class="diag-nm" id="hs-diag-name">Acidity / Gastritis</p>
+              <span class="ctag" id="hs-diag-tag">Common and Treatable</span>
+              <p id="hs-severity-inline" style="margin-top:6px; font-size:13px; font-weight:700; color:var(--t2);">
+                Severity: Mild
+              </p>
+            </div>
+            <svg class="hs-flame" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="40" cy="45" rx="28" ry="24" fill="#FF8A65" />
+              <ellipse cx="35" cy="38" rx="22" ry="20" fill="#FFA07A" />
+              <path d="M22 35 Q28 25 38 28 Q50 22 55 35 Q58 45 50 52 Q42 58 32 54 Q22 50 22 40Z" fill="#FF7043" opacity="0.7" />
+              <text x="40" y="48" text-anchor="middle" font-size="18" fill="#fff">!</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="card hs-card hs-analysis">
+          <div class="hs-analysis-wrap">
+            <svg class="hs-analysis-av" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <ellipse cx="50" cy="72" rx="33" ry="28" fill="#5B8DEF" />
+              <ellipse cx="50" cy="45" rx="26" ry="25" fill="#7BA7F7" />
+              <ellipse cx="41" cy="40" rx="5" ry="6" fill="white" />
+              <ellipse cx="59" cy="40" rx="5" ry="6" fill="white" />
+              <circle cx="42" cy="42" r="2.5" fill="#1a3a6b" />
+              <circle cx="60" cy="42" r="2.5" fill="#1a3a6b" />
+              <path d="M43 53 Q50 59 57 53" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" />
+            </svg>
+            <p id="hs-analysis-text">
+              Your symptoms most likely indicate mild acidity or gastritis. This is common, treatable, and usually improves within 2-3 days.
+            </p>
+          </div>
+        </div>
+
+        <div class="card hs-card">
+          <span class="lbl">Top 3 Likely Causes</span>
+          <ul class="act-li" id="hs-top-causes">
+            <li><span class="chk">&#10003;</span><span><b>Acidity / Gastritis - 95%</b></span></li>
+            <li><span class="chk">&#10003;</span><span><b>Functional Dyspepsia - 3%</b></span></li>
+            <li><span class="chk">&#10003;</span><span><b>Food Intolerance - 2%</b></span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="hs-rp">
+        <div class="card hs-card">
+          <span class="lbl">What You Should Do</span>
+          <ul class="act-li" id="hs-actions">
+            <li><span class="chk">&#10003;</span><span>Consult a General Physician</span></li>
+            <li><span class="chk">&#10003;</span><span>Avoid spicy and oily food</span></li>
+            <li><span class="chk">&#10003;</span><span>Take OTC antacids for temporary relief</span></li>
+          </ul>
+          <p id="hs-note">Note: Get checked if it continues for more than 2-3 days.</p>
+        </div>
+
+        <div class="card hs-card hs-mini">
+          <span class="lbl">Specialist to Consult</span>
+          <p id="hs-specialist">General Physician</p>
+        </div>
+
+        <div class="card hs-card hs-mini">
+          <span class="lbl">Severity Level</span>
+          <div class="sev-row">
+            <span class="sev-chip" id="hs-sev-chip">Mild</span>
+            <p class="sev-desc" id="hs-sev-desc">Typically resolves in 2-3 days.</p>
+          </div>
+        </div>
+
+        <div class="tl-card hs-card hs-timeline">
+          <span class="lbl">Recovery Timeline</span>
+          <div class="tl-steps">
+            <div class="tl-s on">
+              <div class="tl-dot"></div>
+              <p class="tl-t" id="hs-tl-1">Day 1: Consult doctor</p>
+            </div>
+            <div class="tl-s">
+              <div class="tl-dot"></div>
+              <p class="tl-t" id="hs-tl-2">Day 1-2: Start medication</p>
+            </div>
+            <div class="tl-s">
+              <div class="tl-dot"></div>
+              <p class="tl-t" id="hs-tl-3">Day 3: Feeling much better</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-row hs-stat-row">
+          <div class="stat-b"><span class="stat-n" id="hs-stat-match">95%</span><span class="stat-l">Match</span></div>
+          <div class="stat-b"><span class="stat-n" id="hs-stat-days">2-3</span><span class="stat-l">Days</span></div>
+          <div class="stat-b"><span class="stat-n" id="hs-stat-cost">Rs300</span><span class="stat-l">Cost</span></div>
+        </div>
+
+        <button class="btn btn-p btn-wide hs-cta" onclick="goTo(5)">Find Affordable Care Near Me -></button>
+      </div>
+    </div>
+  </div>
+</section>

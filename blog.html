@@ -104,7 +104,7 @@ a{text-decoration:none}
   font-size:14px; font-weight:800; padding:10px 18px; border-radius:12px;
   transition:all 0.2s; cursor:pointer; border:none; background:none;
 }
-.btn-auth.login{color:var(--blue); border:1px solid var(--bluebg)}
+.btn-auth.login{color:var(--blue); border:2px solid var(--bluebg)}
 .btn-auth.login:hover{background:var(--bluebg)}
 .btn-auth.join{background:var(--blue); color:#fff; box-shadow:0 4px 12px rgba(26,86,219,0.2)}
 .btn-auth.join:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(26,86,219,0.3)}
@@ -206,9 +206,8 @@ footer{background:var(--white); padding:80px var(--px); border-top:1px solid var
   </nav>
 
   <div class="hdr-r">
-    <div style="display:flex; align-items:center; gap:8px" class="hdr-auth-btns">
+    <div class="hdr-auth-btns">
       <button class="btn-auth login" onclick="openAuth('login')">Sign In</button>
-      <button class="btn-auth join" onclick="openAuth('signup')">Sign Up</button>
     </div>
     <button class="emg" onclick="location.href='emergency.html'"><span>🚨</span>Emergency Help</button>
     <div class="hdr-emg-mob" onclick="location.href='emergency.html'">🚨</div>
@@ -232,9 +231,8 @@ footer{background:var(--white); padding:80px var(--px); border-top:1px solid var
   <a href="contact.html" class="drawer-lnk"><i>📞</i> Contact Us</a>
   <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:12px">
     <button class="emg" onclick="location.href='emergency.html'" style="width:100%; justify-content:center; animation:none"><span>🚨</span>Emergency Help</button>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+    <div style="display:flex; flex-direction:column; gap:10px">
       <button class="btn-auth login" onclick="openAuth('login')" style="width:100%; justify-content:center">Sign In</button>
-      <button class="btn-auth join" onclick="openAuth('signup')" style="width:100%; justify-content:center">Sign Up</button>
     </div>
   </div>
 </div>

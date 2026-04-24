@@ -1,0 +1,51 @@
+<!-- ══════════ SCREEN 1 — SEARCH ENGINE UI ══════════ -->
+<section class="screen active" id="s1">
+  <div class="s1-search-container">
+
+    <!-- Rotating hero headline (Centered) -->
+    <div class="h1-rot-wrap">
+      <div class="h1-rot centered" aria-live="polite">
+        <h1 class="h1-slide active" id="h1a">What’s been troubling you lately?</h1>
+        <h1 class="h1-slide" id="h1b">How are you feeling today?<br /><span class="h-acc">Tell us!</span></h1>
+        <h1 class="h1-slide" id="h1c">Not feeling your best?<br /><span class="h-acc">Tell us!</span></h1>
+        <h1 class="h1-slide" id="h1d">Search anything about<br /><span class="h-acc">Health & Medicine</span></h1>
+        <h1 class="h1-slide" id="h1e">Have a health doubt?<br /><span class="h-acc">Search it here!</span></h1>
+      </div>
+    </div>
+
+    <!-- Search Style Input Box -->
+    <div class="search-box-wrap">
+      <div class="search-ico">🔍</div>
+      <input type="text" id="home-search-input" class="search-input" placeholder="Why do I have a chest pain...."
+        onkeydown="if(event.key==='Enter') goTo(2)">
+      <button class="search-btn" onclick="goTo(2)">Search</button>
+    </div>
+
+    <!-- Quick Labels / Suggestions (Matching Placeholder Style) -->
+    <div class="search-suggestions">
+      <span class="sug-lbl">Try searching for Your Health Issues like</span>
+      <div class="sug-tags">
+        <span onclick="setSearch('Why do I have a chest pain?')">"Why do I have a chest pain?"</span>
+        <span onclick="setSearch('Headache from 2 days')">"Headache from 2 days"</span>
+        <span onclick="setSearch('Headache on one side causes')">"Headache on one side causes"</span>
+        <span onclick="setSearch('Why I am feeling tired all the time')">"Why I am feeling tired all the time"</span>
+        <span onclick="setSearch('Stomach burn after meal')">"Stomach burn after meal"</span>
+        <span onclick="setSearch('Feeling dizzy lately')">"Feeling dizzy lately"</span>
+        <span onclick="setSearch('I am Having fever')">"I am Having fever"</span>
+        <span onclick="setSearch('Diabetes Symptoms')">"Diabetes Symptoms"</span>
+        <span onclick="setSearch('Sleep cycle issues')">"Sleep cycle issues"</span>
+      </div>
+    </div>
+
+    <div class="search-footer">
+      <p class="time-note">⏱ AI Analysis in less than 2 minutes</p>
+      <div class="step-row centered">
+        <div class="st-pill"><span class="stn">1</span>Describe</div>
+        <span class="sdv">→</span>
+        <div class="st-pill"><span class="stn">2</span>Analyze</div>
+        <span class="sdv">→</span>
+        <div class="st-pill"><span class="stn">3</span>Save</div>
+      </div>
+    </div>
+  </div>
+</section>

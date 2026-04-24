@@ -1,0 +1,84 @@
+<!-- ══════════ SCREEN 3 — VISUAL ══════════ -->
+<section class="screen" id="s3">
+  <div class="pg">
+    <div class="vu-grid">
+      <!-- Left: Question & Option Selected -->
+      <div class="vu-left">
+        <div class="vu-badge">SYMPTOM MAPPING</div>
+        <h2 class="vu-tt">What we've captured so far:</h2>
+        <div class="symp-list" id="vu-symp-list">
+          <!-- Dynamic symptoms will be injected here -->
+        </div>
+        <div class="anlz"><span class="pulse"></span><span id="anlz-txt">Processing inputs…</span></div>
+      </div>
+
+      <!-- Center: Body SVG with Highlighting -->
+      <div class="vu-center">
+        <div class="body-outer">
+          <div class="body-orb">
+            <div class="body-ring"></div>
+            <svg viewBox="0 0 220 380" xmlns="http://www.w3.org/2000/svg" class="body-svg" id="body-map">
+              <!-- Head -->
+              <g id="v-head" class="body-part">
+                <circle cx="110" cy="55" r="38" fill="#FDDBB4" stroke="#e0c090" stroke-width="2" />
+                <ellipse cx="110" cy="30" rx="35" ry="18" fill="#2d1a0e" />
+                <ellipse cx="98" cy="50" rx="5" ry="6" fill="white" />
+                <ellipse cx="122" cy="50" rx="5" ry="6" fill="white" />
+                <circle cx="99" cy="51" r="3" fill="#333" />
+                <circle cx="123" cy="51" r="3" fill="#333" />
+              </g>
+              <!-- Throat/Neck -->
+              <rect x="103" y="90" width="14" height="18" fill="#FDDBB4" class="body-part" id="v-neck" />
+              <!-- Torso Parts -->
+              <g id="v-chest" class="body-part">
+                <rect x="68" y="106" width="84" height="60" rx="12" fill="#6C8FF0" />
+              </g>
+              <g id="v-stomach" class="body-part">
+                <rect x="68" y="156" width="84" height="60" rx="12" fill="#6C8FF0" />
+              </g>
+              <!-- Arms -->
+              <rect x="40" y="108" width="28" height="75" rx="14" fill="#6C8FF0" class="body-part" id="v-arm-l" />
+              <rect x="152" y="108" width="28" height="75" rx="14" fill="#6C8FF0" class="body-part" id="v-arm-r" />
+              <!-- Legs -->
+              <g id="v-legs" class="body-part">
+                <rect x="82" y="214" width="28" height="95" rx="12" fill="#3a4a7a" />
+                <rect x="112" y="214" width="28" height="95" rx="12" fill="#3a4a7a" />
+              </g>
+
+              <g id="v-glow" style="display:none">
+                <circle cx="110" cy="168" r="40" fill="rgba(59,130,246,0.15)" class="sglow" />
+                <circle cx="110" cy="168" r="10" fill="rgba(59,130,246,0.6)" />
+              </g>
+            </svg>
+            <div id="vu-orbs"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Detailed Summary Bullets -->
+      <div class="vu-right">
+        <div class="ai-box">
+          <div class="ai-hdr">
+            <div class="ai-ic"></div>
+            <div>
+              <p class="ai-tt">✨ Clinical Summary</p>
+              <p class="ai-st">Based on your selections</p>
+            </div>
+          </div>
+          <ul class="summary-bullets" id="vu-summary-bullets">
+            <!-- Bullet points with summaries will be injected here -->
+          </ul>
+          
+          <div class="prog-mini">
+            <div class="prog-bar-container">
+              <div class="prog-bar-fill" id="vu-bar"></div>
+            </div>
+            <p class="prog-text">Analysis: <span id="vu-pct">0%</span></p>
+          </div>
+
+          <button class="btn btn-p btn-wide" id="btn-vu" onclick="goTo(4)" disabled>Continue to Summary →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
